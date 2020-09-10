@@ -1,54 +1,63 @@
+// Import main modules
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+// Import component
 import Header from './components/Header';
+import ButtonFloating from './components/ButtonFloating';
+import Card from './components/Card';
+// Import database
+import Database from './database/Database';
 
-const PressingButtonFirst = () => (
-  console.log("Pressing first page button!")
-);
+// Global initialize todo list object
+var todoList = [];
 
-const PressingButtonSecond = () => (
-  console.log("Pressing second page button!")
-);
+// Function press floating button
+const PressingButton = () => {
+    // Add data to database
+    Database.addData("Add data todo list");
+    window.alert("Add data SUCCESS!");
+    
+    // Update data
+    updateData();
+};
 
-const App = () => (
-  // Render component to view
-  <View style={styleDesign.container}>
-    <Header title='Title'/>
-    <View style={styleDesign.center}>
-      <Text>Red Wagon</Text>
-      <TouchableOpacity
-        style={styleDesign.primaryButton}
-        onPress={PressingButtonFirst}>
-        <Text style={styleDesign.primaryButtonText}>First Page</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styleDesign.primaryButton}
-        onPress={PressingButtonSecond}>
-        <Text style={styleDesign.primaryButtonText}>Second Page</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-);
+// Function to update data
+function updateData() {
+    // Initialize todo list object
+    todoList = [];
+    // Get data from database
+    var data = Database.getData();
 
-const styleDesign = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  center: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  primaryButton: {
-    marginTop: 10,
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    backgroundColor: '#ff5733',
-    borderRadius: 10,
-  },
-  primaryButtonText: {
-    fontSize: 14,
-    color: '#ffffff',
-  }
+    // Loop data pass to list object
+    data.map(raw => (
+        todoList.push(<Card key={raw.id} title={raw.title} />)
+    ));
+};
+
+// Main application function
+const App = () => {
+    // Update data
+    updateData();
+    // Main render
+    return (
+        <View style={styles.container}>
+            <Header title='To-Do List' />
+
+            {/* Content */}
+            <View>
+                {todoList}
+            </View>
+
+            <ButtonFloating onPress={PressingButton} icon="plus" />
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#F5F5F5',
+    },
 });
 
 export default App;
