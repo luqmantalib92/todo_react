@@ -1,34 +1,3 @@
-// import * as React from 'react';
-// import { NavigationContainer } from 'react-navigation';
-// import { createStackNavigator } from 'react-navigation-stack';
-// import HomeScreen from './screen/HomeScreen';
-// import EditScreen from './screen/EditScreen';
-
-
-// const Stack = createStackNavigator();
-
-// const App = () => {
-//     return (
-//         <NavigationContainer>
-//             <Stack.Navigator>
-//                 <Stack.Screen
-//                     name="Home"
-//                     component={HomeScreen}
-//                     options={{ title: 'Welcome' }}
-//                 />
-//                 <Stack.Screen
-//                     name="Profile"
-//                     component={EditScreen}
-//                     options={{ title: 'Edit' }}
-//                 />
-//             </Stack.Navigator>
-//         </NavigationContainer>
-//     );
-// };
-
-// export default App;
-
-
 // Import main modules
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
@@ -63,12 +32,10 @@ function updateData() {
     data.map(raw => (
         todoList.push(<Card key={raw.id} title={raw.title} />)
     ));
-
-    // window.location.reload(false);
 };
 
 // Main application function
-const App = () => {
+const HomeScreen = () => {
     // Update data
     updateData();
     // Main render
@@ -93,4 +60,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default App;
+export default HomeScreen;

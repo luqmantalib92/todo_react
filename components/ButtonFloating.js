@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View, StyleSheet, TouchableOpacity, Dimensions, Text } from 'react-native';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -10,7 +9,7 @@ const ButtonFloating = props => (
         <TouchableOpacity
             onPress={props.onPress}>
             <View style={styles.button} >
-                <Icon style={styles.icon} name={props.icon} size={20} color="white" />
+                <Text style={styles.icon}>+</Text>
             </View>
         </TouchableOpacity>
     </View>
@@ -28,8 +27,11 @@ const styles = StyleSheet.create({
     },
     icon: {
         position: 'absolute',
-        alignSelf: 'center',
-        top: 20,
+        left: 20,
+        top: 10,
+        fontSize: 30,
+        fontWeight: "300",
+        color: "white",
     },
     footer: {
         position: 'absolute',
