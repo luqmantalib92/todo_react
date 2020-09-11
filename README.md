@@ -13,4 +13,4 @@ Still in progress
 ## Screenshot
 
 - Page Main
-<img src="screenshot/Page01.png" width="187.5" height="333.5">
+<img src="screenshot/Page01.png" width="187.5">
